@@ -1,0 +1,84 @@
+﻿<Window x:Class="Pop_Data.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Population Database Editor" Height="450" Width="850" ResizeMode="NoResize">
+    
+    <!--Authors Lennox Gilbert, Minal Cheema, Farhat Raza, Sachita Patel-->
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border BorderThickness="1" Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="Black" Background="AliceBlue" />
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Orientation="Horizontal" >
+            <ComboBox
+                    Name="SortBy"
+                    Width="120"
+                    Height="27"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="14"
+                    SelectedItem="{Binding SortBySelected}" />
+            <ComboBox
+                    Name="OrderBy"
+                    Width="120"
+                    Height="27"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="14"
+                    SelectedItem="{Binding OrderBySelected}" />
+        </StackPanel>
+        
+        <ListView Grid.Row="1" ItemsSource="{Binding Cities}" 
+                  HorizontalContentAlignment="Stretch" 
+                  SelectedItem="{Binding SelectedCity}">
+            <ListView.View>
+                <GridView AllowsColumnReorder="true"
+                          ColumnHeaderToolTip="Employee Information">
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=CityName}" Header="City" Width="150"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Population}" Header="Population" Width="150" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Border Background="AliceBlue" BorderThickness="1" BorderBrush ="Black" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" >
+            <Button Name="Add" Content="Add"  Margin="15 15" FontSize="20" MinWidth="100" Click="Add_Click"></Button>
+            <Button Name="Edit" Content="Edit"  Margin="15 15" FontSize="20" MinWidth="100" Click="Edit_Click"></Button>
+            <Button Name="Delete" Content="Delete"  Margin="15 15"  FontSize="20" MinWidth="100" Click="Delete_Click"></Button>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Total Population" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
+            <Label Grid.Row="2" Content="Highest Population" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
+
+            <Border BorderThickness="1" Grid.Row="1" BorderBrush="Black" Margin="10">
+                <TextBlock Text="{Binding TotalPop, StringFormat='0,0.'}" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"/>
+            </Border>
+            <Border BorderThickness="1" Grid.Row="3" BorderBrush="Black" Margin="10">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="{Binding MaxPopCity}"  HorizontalContentAlignment="Center" Height="35" FontSize="15"  Foreground="Green" VerticalContentAlignment="Bottom"/>
+                    <TextBlock Text="{Binding MaxPop, StringFormat='0,0.'}" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
