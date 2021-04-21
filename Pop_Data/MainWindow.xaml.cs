@@ -23,10 +23,14 @@ namespace Pop_Data
 
         private void LoadComboBox()
         {
-            for (int i = 0; i < SortByList.Length; i++)
+            foreach (string option in SortByList)
             {
-                SortBy.Items.Add(SortByList[i]);
-                OrderBy.Items.Add(OrderByList[i]);
+                SortBy.Items.Add(option);
+            }
+
+            foreach (string option in OrderByList)
+            {
+                OrderBy.Items.Add(option);
             }
         }
 
@@ -51,6 +55,7 @@ namespace Pop_Data
             if (vm.SelectedCity != null)
             {
                 string message = $"Are you sure you want to delete this city ({vm.SelectedCity.CityName})?";
+
                 MessageBoxResult result = MessageBox.Show(message, "Delete City", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {

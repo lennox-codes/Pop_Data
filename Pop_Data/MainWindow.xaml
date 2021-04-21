@@ -5,9 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Population Database Editor" Height="450" Width="850" ResizeMode="NoResize">
-    
-    <!--Authors Lennox Gilbert, Minal Cheema, Farhat Raza, Sachita Patel-->
-    
+      
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
